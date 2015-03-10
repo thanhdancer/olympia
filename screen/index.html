@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title> ..:: Olympia - Screen ::.. </title>
+		<script src="http://127.0.0.1:8092/socket.io/socket.io.js"></script>
+		<script src="../js/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript">
+			var socket = io.connect('http://127.0.0.1:8092');
+			
+			
+			$(document).ready( function() {
+				$("#score_table").hide();
+				
+			});
+			socket.emit( 'keep-alive', 'Connected'	 );
+			socket.on( 'keep-alive', function(data) {
+					alert(data);
+					$("#container").css("background", "#000000 url('../images/olpia.jpg') no-repeat");
+					$("#container").html('');
+					
+					
+			});
+			socket.on('Screen', function (data) {
+				var tmp = data.split( '|', 2 );
+				var cmd = tmp[0];
+				var content = tmp[1];
+				switch (cmd)
+				{
+					case 'changeBackground':
+						$("#container").css("background", "#000000 url('" + content + "') no-repeat");
+						break;
+					case 'updateScore':
+						$("#score_table").html( data );
+						break;
+					case 'hideScore':
+						$("#score_table").hide(1000);
+						$("#container").css("opacity", 1);
+						break;
+					case 'showScore':
+						$("#score_table").show(2000);
+						$("#container").css("opacity", 0.2);
+						break
+				}
+				
+			});
+		</script>
+		<style type="text/css">
+			#container{
+				width: 1024px;
+				height: 768px;
+				margin: auto auto;
+				}
+			body{
+				background: #000000 url('../images/bg.jpg');
+				font: normal normal 12px verdana;
+				}
+			#score_table{
+				position: absolute;
+				top: 400px;
+			}			
+			table#score {
+				background-color: #AABBCC;
+				width:800px;
+				margin: auto auto;
+				border: 2px #953 solid;
+			}
+			table#score td{
+				border-bottom: #533221 1px dashed;
+				font:normal bold 25px verdana;
+			}
+			th.score{
+				font: normal bold 50px verdana;
+				color: #fff;
+				background-color: #233241;
+			}
+			td.name{
+				padding-left: 25px;
+				
+			}
+			td.score{
+				text-align: center;
+			}
+			
+		</style>
+   </head>
+   <body>
+   
+   <div id="container"><center><font color="#ffffff" face="Arial" style="font-size: 50px">Please wait, connecting to server....</font></center>
+   
+		
+   </div>
+   <div id="score_table" style="width: 100%">
+			<table id="score">
+				<tr>
+					<th class="score">
+						Tên thí sinh
+					</th>
+					<th class="score">
+						Điểm
+					</th>
+				</tr>
+				<tr>
+					<td class="name">
+					Hoang
+					</td>
+					<td class="score">
+					10
+					</td>
+				</tr>
+				<tr>
+					<td class="name">
+					Van
+					</td>
+					<td class="score">
+					20
+					</td>
+				</tr>
+				<tr>
+					<td class="name">
+					Nhat
+					</td>
+					<td class="score">
+					35
+					</td>
+				</tr>
+				<tr>
+					<td class="name">
+					Quan
+					</td>
+					<td class="score">
+					30
+					</td>
+				</tr>
+			</table>
+		</div>
+   </body>
+</html>
