@@ -1,7 +1,7 @@
-<?
+<?php
 if( !isset( $_POST ) )
 	header( "location: ?do=user" );
-	
+
 foreach( $_POST as $tmp => $value )
 {
 	if( substr( $tmp, 0, 4 ) == 'user' )

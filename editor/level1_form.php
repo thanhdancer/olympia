@@ -1,16 +1,16 @@
-<?
+<?php
 $action = ( isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : "" );
 switch( $action )
 {
 	case 'edit':
 		$id = intval( $_REQUEST['id'] );
-		$query = "SELECT * 
+		$query = "SELECT *
 					FROM `olp_level1`
 					WHERE `qid` = " . $id;
-		$result = mysql_query( $query ) or die('Query failed: ' . mysql_error());			
+		$result = mysql_query( $query ) or die('Query failed: ' . mysql_error());
 		if( mysql_num_rows( $result ) < 1 )
 		{
-			echo $lang['not_found_question'];	
+			echo $lang['not_found_question'];
 		}
 		else
 		{
@@ -27,22 +27,22 @@ switch( $action )
 			</form>';
 		}
 		break;
-			
+
 	default:
 	$perpage = 30;
 	$page = ( isset( $_REQUEST['p'] ) ? intval( $_REQUEST['p'] ) : 0 ) * $perpage 	;
 	$query = "SELECT * FROM `olp_level1`";
 	$result = mysql_query( $query ) or die('Query failed: ' . mysql_error());
 	$total_page = mysql_num_rows( $result );
-	
-	
-	
-	$query = "SELECT * 
-				FROM `olp_level1` 
+
+
+
+	$query = "SELECT *
+				FROM `olp_level1`
 				ORDER BY `qid`
 				LIMIT $page, $perpage";
 	$result = mysql_query( $query );
-	
+
 	echo '<script type="text/javascript">
 			function check_all(a)
 			{
@@ -65,7 +65,7 @@ switch( $action )
 				window.location = "?do=level1&p=" + (a-1);
 			}
 		</script>
-			
+
 		<form action="?do=level1_action" method="POST"><table width="100%" style="font-size: 12px; border: 1px #000000 solid">
 			<tr style="font-size: 15px">
 			<td width="49%">' . $lang['question'] . '</td>
@@ -89,10 +89,10 @@ switch( $action )
 				<tr>
 				<td align="left">
 					<div align="left">' . $lang['page'] . ' <select id="page" onchange="change_page()">
-				
-			
+
+
 			';
-			
+
 			for( $i = 1; $i <= ceil( $total_page / $perpage ) ; $i ++ )
 			{
 				echo '<option value="' . $i . '" ' . ($i == $_REQUEST['p'] + 1 ? 'selected="selected"' :'' ) . '>' . $i . '</option>';
@@ -107,7 +107,7 @@ switch( $action )
 							<option value="delete">' . $lang['delete'] . '</option>
 							<option value="deactive">' . $lang['deactive'] . '</option>
 						</select>
-						
+
 				</td>
 				</tr>
 			</table>

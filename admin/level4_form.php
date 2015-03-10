@@ -1,4 +1,4 @@
-<?
+<?php
 	include( './globals.php' );
 	$perpage = 30;
 	$type = ( isset( $_REQUEST['type'] ) ? $_REQUEST['type'] : 1 );
@@ -8,14 +8,14 @@
 				WHERE `level` = " . intval( $type );
 	$result = mysql_query( $query ) or die( 'Query failed: ' . mysql_error() );
 	$total_page = mysql_num_rows( $result );
-	
+
 	$query = "SELECT *
 				FROM `olp_level4`
 				WHERE `level` = " . intval( $type ) . "
 				ORDER BY `qid`
 				LIMIT $page, $perpage";
 	$result = mysql_query( $query ) or die( 'Query failed: ' . mysql_error() );
-	
+
 	echo '<script type="text/javascript">
 			function active_question( id )
 			{
@@ -36,7 +36,7 @@
 					  data: { id: id, type: type }
 					});
 				return false;
-				
+
 			}
 			function chang_level()
 			{
@@ -59,14 +59,14 @@
 						$("#form_content").html(msg);
 					});
 			}
-			
+
 			</script>' . $lang['level4_type'] . '
 		<select id="type" onchange="chang_level()">
 			<option value="1" ' . ( $type == 1 ? 'selected="selected"' : '' ) . '> 40 ' . $lang['score'] . ' </option>
 			<option value="2" ' . ( $type == 2 ? 'selected="selected"' : '' ) . '> 60 ' . $lang['score'] . ' </option>
 			<option value="3" ' . ( $type == 3 ? 'selected="selected"' : '' ) . '> 80 ' . $lang['score'] . ' </option>
 		</select><br />
-		
+
 		<table width="100%" style="font-size: 12px; border: 1px #000000 solid; ">
 			<tr style="font: normal bold 15px Tahoma">
 				<td width="50%">' . $lang['question'] . '</td>
@@ -76,7 +76,7 @@
 			<tr>
 				<td colspan="3"><hr /></td>
 			</tr>';
-	
+
 	while( $line = mysql_fetch_row( $result, MYSQL_ASSOC ) )
 	{
 		switch ( $line['status'] )
@@ -98,21 +98,21 @@
 				</tr>';
 	}
 	echo '</table>
-		
+
 				<div align="left">' . $lang['page'] . ' <select id="page" onchange="change_page()">
-			
-		
+
+
 		';
-		
+
 		for( $i = 1; $i <= ceil( $total_page / $perpage ) ; $i ++ )
 		{
 			echo '<option value="' . $i . '" ' . ($i == $_REQUEST['p'] + 1 ? 'selected="selected"' :'' ) . '>' . $i . '</option>';
 		}
 		echo '
 				</select></div>
-			
-		
-		
+
+
+
 		';
-	
+
 ?>

@@ -1,4 +1,4 @@
-<?
+<?php
 $q = ( isset( $_REQUEST['qid'] ) ? $_REQUEST['qid'] : -1 );
 if( $q == -1 )
 {
@@ -36,7 +36,7 @@ echo '<script type="text/javascript">
 		a = $("#id").attr("value");
 		window.location = "?do=level2&qid=" + a;
 	}
-	
+
 	function active_question()
 	{
 		$("#ques").css("background-color", "#FFFF00");
@@ -64,7 +64,7 @@ $query = "SELECT `qid`
 $result = mysql_query( $query ) or die('Query failed: ' . mysql_error());
 $i = 0;
 while( $line = mysql_fetch_row( $result, MYSQL_ASSOC ) )
-{	
+{
 	$i++;
 	echo '<option value="' . $line['qid'] . '" ' . ( $i_default == $line['qid'] ? 'selected="selected"' : '' ) . ' > ' . $i . ' </option>';
 }

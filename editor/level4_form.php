@@ -1,16 +1,16 @@
-<?
+<?php
 	$action = ( isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : '' );
 	if( $action == 'edit' )
 	{
 		$type = intval( $_REQUEST['type'] );
 		$id = intval( $_REQUEST['id'] );
-		$query = "SELECT * 
+		$query = "SELECT *
 					FROM `olp_level4`
 					WHERE `qid` = " . $id;
-		$result = mysql_query( $query ) or die('Query failed: ' . mysql_error());			
+		$result = mysql_query( $query ) or die('Query failed: ' . mysql_error());
 		if( mysql_num_rows( $result ) < 1 )
 		{
-			echo $lang['not_found_question'];	
+			echo $lang['not_found_question'];
 		}
 		else
 		{
@@ -38,14 +38,14 @@
 					WHERE `level` = " . intval( $type );
 		$result = mysql_query( $query ) or die( 'Query failed: ' . mysql_error() );
 		$total_page = mysql_num_rows( $result );
-		
+
 		$query = "SELECT *
 					FROM `olp_level4`
 					WHERE `level` = " . intval( $type ) . "
 					ORDER BY `qid`
 					LIMIT $page, $perpage";
 		$result = mysql_query( $query ) or die( 'Query failed: ' . mysql_error() );
-		
+
 		echo '<script type="text/javascript">
 				function chang_level()
 				{
@@ -103,10 +103,10 @@
 				<tr>
 				<td align="left">
 					<div align="left">' . $lang['page'] . ' <select id="page" onchange="change_page()">
-				
-			
+
+
 			';
-			
+
 			for( $i = 1; $i <= ceil( $total_page / $perpage ) ; $i ++ )
 			{
 				echo '<option value="' . $i . '" ' . ($i == $_REQUEST['p'] + 1 ? 'selected="selected"' :'' ) . '>' . $i . '</option>';
@@ -122,7 +122,7 @@
 							<option value="delete">' . $lang['delete'] . '</option>
 							<option value="deactive">' . $lang['deactive'] . '</option>
 						</select>
-						
+
 				</td>
 				</tr>
 			</table>

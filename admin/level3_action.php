@@ -1,4 +1,4 @@
-<?
+<?php
 	include( './globals.php' );
 	$id = intval( $_POST['qid'] );
 	$action = ( isset( $_REQUEST['action'] ) ? $_REQUEST['action'] : "" );

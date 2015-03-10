@@ -1,4 +1,4 @@
-<?
+<?php
 	include( "../config.php" );
 	include( "../includes/functions.php" );
 	include( "lang_vi.php" );

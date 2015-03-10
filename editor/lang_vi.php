@@ -1,4 +1,4 @@
-<?
+<?php
 $lang['user'] = "Thí sinh";
 $lang['level1'] = "Khởi động";
 $lang['level2'] = "Vượt chướng ngại vật";

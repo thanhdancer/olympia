@@ -1,4 +1,4 @@
-<?
+<?php
 	include( './globals.php' );
 	$q = ( isset( $_REQUEST['qid'] ) ? $_REQUEST['qid'] : -1 );
 	if( $q == -1 )

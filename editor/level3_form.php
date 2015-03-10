@@ -1,6 +1,6 @@
-<?
+<?php
 	$q = ( isset( $_REQUEST['qid'] ) ? $_REQUEST['qid'] : -1 );
-		
+
 	if( $q == -1 )
 	{
 		$query = "SELECT *
@@ -20,13 +20,13 @@
 	$q_default = $line['question'];
 	$a_default = $line['answer'];
 	$s_default = $line['status'];
-	
+
 	for( $i = 1; $i <= 10; $i++ )
 	{
 		$img_default[$i] = $line['img'.$i];
 	}
-	
-	
+
+
 	switch ( $s_default )
 	{
 		case 0:
@@ -39,8 +39,8 @@
 			$style = 'background-color: #FF0000';
 			break;
 	}
-	
-	
+
+
 	echo '<script type="text/javascript">
 			var editing = 0;
 			$(document).ready(function(){
@@ -60,7 +60,7 @@
 			{
 				$("#preview").html("");
 			}
-			
+
 			function question_active()
 			{
 				$("#tbl_ground").css("background-color", "#FFFF00");
@@ -73,7 +73,7 @@
 					}
 					});
 			}
-			
+
 			function question_edit()
 			{
 				$("#tbl_ground").css("background-color", "#123456")
@@ -93,12 +93,12 @@
 	$result = mysql_query( $query ) or die('Query failed: ' . mysql_error());
 	$i = 0;
 	while( $line = mysql_fetch_row( $result, MYSQL_ASSOC ) )
-	{	
+	{
 		$i++;
 		echo '<option value="' . $line['qid'] . '" ' . ( $i_default == $line['qid'] ? 'selected="selected"' : '' ) . ' > ' . $i . ' </option>';
 	}
 	echo '</select><br />
-	
+
 	<div id="preview"></div><table id="tbl_ground" width="100%" cellpadding="5px" style="' . $style . '; margin-bottom: 10px; border: 1px #123123 solid">
 			<tr>';
 	for( $i = 1; $i <= 5; $i++ )

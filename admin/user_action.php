@@ -1,4 +1,4 @@
-<?
+<?php
 	include( './globals.php' );
 	foreach( $_POST as $tmp => $value )
 	{

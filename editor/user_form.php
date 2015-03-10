@@ -1,4 +1,4 @@
-<?
+<?php
 	$query = "SELECT * FROM olp_user";
 	$result = @mysql_query( $query );
 	?>
@@ -7,21 +7,21 @@
 		<table>
 			<tr>
 				<td width="30%"></td>
-				<td width="60%"> <? echo $lang['name'] ?></td>
-				<td width="10%"> <? echo $lang['score'] ?></td>
+				<td width="60%"> <?php echo $lang['name'] ?></td>
+				<td width="10%"> <?php echo $lang['score'] ?></td>
 			</tr>
-	<?
+	<?php
 	$i = 0;
 	while( $line = mysql_fetch_array( $result, MYSQL_ASSOC ) )
 	{
 		$i++
 		?>
 		<tr>
-			<td width="30%"> <? echo $lang['userid'] . ' ' . $i ?> </td>
-			<td width="60%"><input type="text" size="50" name="user<? echo $line['id'] ?>" value="<? echo $line['name'] ?>" /> </td>
-			<td width="60%"><input type="text" name="score<? echo $line['id'] ?>" value="<? echo $line['score'] ?>" /> </td>
+			<td width="30%"> <?php echo $lang['userid'] . ' ' . $i ?> </td>
+			<td width="60%"><input type="text" size="50" name="user<?php echo $line['id'] ?>" value="<?php echo $line['name'] ?>" /> </td>
+			<td width="60%"><input type="text" name="score<?php echo $line['id'] ?>" value="<?php echo $line['score'] ?>" /> </td>
 		</tr>
-	<?
+	<?php
 	}
 	?>
 		</table>
@@ -30,4 +30,3 @@
 		<center><input type="submit" value=" Save " /></center>
 		</form>
 	</div>
-		
