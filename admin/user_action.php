@@ -19,5 +19,5 @@
 			mysql_query( $query );
 		}
 	}
-	
+
 ?>
